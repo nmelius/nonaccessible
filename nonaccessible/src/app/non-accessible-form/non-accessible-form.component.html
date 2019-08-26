@@ -1,0 +1,76 @@
+<div class="main-nav__menu-list">
+  <span class="main-nav__menu-item">
+       <a [routerLink]="['/non-accessible-form']" fragment="form">Form</a>
+  </span><br/>
+  <span class="main-nav__menu-item">
+       <a [routerLink]="['/non-accessible-form']" fragment="map">Map</a>
+  </span><br/>
+  <span class="main-nav__menu-item">
+       <a [routerLink]="['/non-accessible-form']" fragment="image">Image</a>
+  </span>
+</div><br/>
+
+<section id="form">
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    First Name:<br/>
+    <input type="text" formControlName="firstName" required><br/>
+
+    Last Name:<br/>
+    <input type="text" formControlName="lastName"><br/>
+
+  <div formGroupName="address">
+    <h3>Address</h3><br/>
+
+      Street:<br/>
+      <input type="text" formControlName="street"><br/>
+
+      City:<br/>
+      <input type="text" formControlName="city"><br/>
+
+      State:<br/>
+      <input type="text" formControlName="state"><br/>
+
+      Zip Code:<br/>
+      <input type="text" formControlName="zip"><br/>
+  </div>
+
+  <div formArrayName="aliases">
+    <h3>Aliases</h3> <button (click)="addAlias()">Add Alias</button><br/>
+
+    <div *ngFor="let address of aliases.controls; let i=index">
+      <!-- The repeated alias template -->
+        Alias:<br/>
+        <input type="text" [formControlName]="i"><br/>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button><br/>
+</form>
+
+<p>
+  <button (click)="updateProfile()">Update Profile</button>
+</p>
+</section>
+
+<hr>
+
+
+<!-- <p>
+  Form Value: {{ profileForm.value | json }}
+</p>
+
+
+<p>
+  Form Status: {{ profileForm.status }}
+</p> -->
+
+
+<section id="map">
+  <h2> Map Section </h2>
+  <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3443.929570497162!2d-81.66624658536429!3d30.324521081781278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e5b713f91dc805%3A0xa6b77d810f886a26!2sCSX%20Corporation!5e0!3m2!1sen!2sus!4v1566782073631!5m2!1sen!2sus" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+</section>
+
+<section id="image">
+      <h2> Image Section </h2>
+      <img src="assets/img/test2.jpg" class="banner__image">
+</section>
